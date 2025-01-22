@@ -1,0 +1,235 @@
+:root {
+  --overlay-color: rgba(0, 0, 0, 0.7);
+  --primary-color: #8baa36;
+  --secondary-color: #fafafa;
+  --hover-BtnOne: #22252a;
+  --hover-BtnTwo: #8baa36;
+  --bg-form: #2a2c36;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--hover-BtnOne);
+  color: var(--secondary-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.0313rem;
+}
+
+/* start page */
+.startPage {
+  height: 100vh;
+  background: linear-gradient(var(--overlay-color), var(--overlay-color)),
+    url(../images/start-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.startPage .content {
+  color: var(--secondary-color);
+}
+.startPage .content .MainIcon {
+  width: 100px;
+  height: 100px;
+  background-color: var(--primary-color);
+  font-size: 3.75rem;
+  margin-bottom: 1rem;
+}
+.startPage .content .text h1 {
+  margin-block: 1rem;
+}
+.startPage .content .text p {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.0313rem;
+  margin-top: 0.5625rem;
+}
+.startPage .content .btns {
+  margin: 9px;
+  font-size: 1.5rem;
+}
+.btnOne,
+.btnTwo,
+.btnOther {
+  padding: 1.1rem 4rem;
+  line-height: 1.5rem;
+  text-transform: capitalize;
+  letter-spacing: 0.0313rem;
+  border-top-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  border-top-right-radius: 44px;
+  border-bottom-left-radius: 44px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all;
+  -moz-transition: all;
+  -ms-transition: all;
+  -o-transition: all;
+}
+.btnOne {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--secondary-color);
+}
+.btnOne:hover {
+  background-color: var(--hover-BtnOne);
+  border: 1px solid var(--hover-BtnOne);
+}
+.btnTwo {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+}
+.btnTwo:hover {
+  background-color: var(--hover-BtnTwo);
+  color: var(--secondary-color);
+  border: 1px solid var(--hover-BtnTwo);
+}
+
+/* home Page */
+.homePage {
+  background-color: var(--bg-form);
+  color: var(--secondary-color);
+  text-align: center;
+}
+.inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.3125rem;
+  -webkit-border-radius: 0.3125rem;
+  -moz-border-radius: 0.3125rem;
+  -ms-border-radius: 0.3125rem;
+  -o-border-radius: 0.3125rem;
+}
+.inner p {
+  width: 90%;
+  background: var(--bg-form);
+  color: var(--secondary-color);
+  text-transform: capitalize;
+  letter-spacing: 0.0313rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+.row {
+  position: relative;
+}
+.row .btnSee {
+  background-color: var(--primary-color);
+  margin-block: 2rem;
+  padding: 0.25rem 1rem;
+  border: none;
+  color: var(--secondary-color);
+  position: absolute;
+  bottom: -30px;
+  right: 1%;
+  border-radius: 0.3125rem;
+  -webkit-border-radius: 0.3125rem;
+  -moz-border-radius: 0.3125rem;
+  -ms-border-radius: 0.3125rem;
+  -o-border-radius: 0.3125rem;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.row .btnSee:hover {
+  color: var(--hover-BtnOne);
+}
+.btnOther {
+  background-color: transparent;
+  border-color: var(--primary-color);
+  color: var(--secondary-color);
+  margin-block: 1.25rem;
+}
+.btnOther:hover {
+  background-color: var(--primary-color);
+}
+
+/* recipe */
+table {
+  border-collapse: separate;
+}
+.recipePage table {
+  width: 100%;
+}
+.recipePage table thead tr {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-transform: capitalize;
+  letter-spacing: 0.0313rem;
+}
+.recipePage table thead th {
+  padding: 1rem;
+}
+.recipePage table img {
+  width: 100px;
+  padding: 0.1rem;
+}
+.recipePage table tbody tr {
+  background: var(--bg-form);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.recipePage table tbody td {
+  padding: 1rem;
+  text-transform: capitalize;
+  /* text-decoration: line-through; */
+}
+
+.recipePage ul {
+  list-style: lower-roman;
+  list-style-position: inside;
+  text-align: left;
+}
+.recipePage ul li {
+  color: var(--secondary-color);
+  letter-spacing: 0.0313rem;
+  padding-block: 0.25rem;
+}
+.recipePage ul li::marker {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
