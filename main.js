@@ -105,19 +105,47 @@ async function getCategoriesList() {
   if (data) {
     categoriesListArray = data.meals;
     let cartona = ``;
-    categoriesListArray.forEach((category) => {
-      cartona += `<li><a href="#" class="categoryItem">${category.strCategory}</a></li>`;
+    categoriesListArray.forEach((category, index) => {
+      cartona += `
+        <li>
+          <a href="#" class="categoryItem ${
+            index === 0 ? "active" : ""
+          }" data-category="${category.strCategory}">
+            ${category.strCategory}
+          </a>
+        </li>
+      `;
     });
     categoriesList.innerHTML = cartona;
 
     // Add Event Listeners for Categories
     categoriesList.addEventListener("click", (e) => {
       if (e.target.classList.contains("categoryItem")) {
-        let category = e.target.innerHTML;
+        let category = e.target.dataset.category;
+        setActiveCategory(e.target); // Set active class
         getCategoriesCard(category);
       }
     });
+
+    // Check URL for a predefined category
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory =
+      urlParams.get("category") || categoriesListArray[0].strCategory; // Default to first category
+    const categoryLink = [...document.querySelectorAll(".categoryItem")].find(
+      (item) => item.dataset.category === selectedCategory
+    );
+    if (categoryLink) {
+      setActiveCategory(categoryLink); // Set the active category from the URL
+      getCategoriesCard(selectedCategory);
+    }
   }
+}
+
+// Function to Set Active Class
+function setActiveCategory(selectedElement) {
+  const items = document.querySelectorAll(".categoryItem");
+  items.forEach((item) => item.classList.remove("active")); // Remove active class from all
+  selectedElement.classList.add("active"); // Add active class to the selected
 }
 
 // Fetch and Display Category Cards
@@ -232,3 +260,98 @@ if (recipeId) {
   getRecipeDetails(recipeId);
   getCategoriesCard(recipeId);
 }
+
+// search Page
+const searchInput = document.getElementById("searchInput");
+const searchSelect = document.getElementById("searchSelect");
+const searchButton = document.getElementById("btnSearch");
+const searchResult = document.getElementById("searchResult");
+
+searchButton.addEventListener("click", () => {
+  const searchQuery = searchInput.value;
+  const searchType = searchSelect.value;
+
+  if (searchType === "name") {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const meals = data.meals;
+        const cartona = meals
+          .map(
+            (meal) => `
+    <div class="col-md-3">
+      <a href="recipe.html?id=${meal.idMeal}">
+        <div class="inner">
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+          <p class="p-1 rounded-3">${meal.strMeal}</p>
+        </div>
+      </a>
+    </div>
+  `
+          )
+          .join("");
+        searchResult.innerHTML = cartona;
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  } else if (searchType === "letter") {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchQuery}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const meals = data.meals;
+        const cartona = meals
+          .map(
+            (meal) => `
+    <div class="col-md-3">
+      <a href="recipe.html?id=${meal.idMeal}">
+        <div class="inner">
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+          <p class="p-1 rounded-3">${meal.strMeal}</p>
+        </div>
+      </a>
+    </div>
+  `
+          )
+          .join("");
+        searchResult.innerHTML = cartona;
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+});
+
+// search home page
+const searchHomeInput = document.getElementById("searchHomeInput");
+const searchHomeResult = document.getElementById("searchHomeResult");
+const searchHomeResultTitle = document.getElementById("searchHomeResultTitle");
+
+searchHomeInput.addEventListener("input", () => {
+  const searchQuery = searchHomeInput.value;
+  if (searchQuery !== "") {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const meals = data.meals;
+        const cartona = meals
+          .map(
+            (meal) => `
+    <div class="col-md-3">
+      <a href="recipe.html?id=${meal.idMeal}">
+        <div class="inner">
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+          <p class="p-1 rounded-3">${meal.strMeal}</p>
+        </div>
+      </a>
+    </div>
+  `
+          )
+          .join("");
+        searchHomeResult.innerHTML = cartona;
+        searchHomeResultTitle.classList.remove("d-none");
+        searchHomeResultTitle.innerHTML = `search result for "${searchQuery}"`;
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  } else {
+    searchHomeResult.innerHTML = ``;
+    searchHomeResultTitle.classList.add("d-none");
+    searchHomeResultTitle.innerHTML = ``;
+  }
+});

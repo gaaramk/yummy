@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="./../../css/all.min.css" />
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./../../css/bootstrap.min.css" />
+
+    <!-- custome css -->
+    <link rel="stylesheet" href="./../../css/style.css" />
+
+    <!-- title -->
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="searchPage" id="searchPage">
+      <div class="container py-5">
+        <div>
+          <h1 class="py-5">search</h1>
+        </div>
+
+        <div class="row justify-content-center" id="searchRow">
+          <div class="col-md-6 text-center">
+            <div class="searchBox">
+              <input
+                type="text"
+                placeholder="search"
+                id="searchInput"
+                class="searchInput"
+              />
+              <a href="#" class="btnOne" id="btnSearch"> search </a>
+            </div>
+
+
+            <select name="search" class="searchSelect my-5" id="searchSelect">
+              <option value="name">name</option>
+              <option value="letter">first-letter</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row py-5 g-3" id="searchResult"></div>
+      </div>
+    </main>
+
+    <!-- main js -->
+    <script src="./../main.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="./../js/bootstrap.bundle.min.js"></script>
+
+    <!-- fontawesome js -->
+    <script src="./../js/all.min.js"></script>
+  </body>
+</html>

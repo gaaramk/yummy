@@ -17,9 +17,58 @@
     <title>Document</title>
   </head>
   <body>
+    <header class="homeHeader" id="homeHeader">
+      <img
+        src="./../images/pngegg.png"
+        class="img-fluid object-fit-cover position-absolute headerImg"
+        alt=""
+      />
+
+      <div
+        class="container d-flex justify-content-center align-items-end"
+      >
+        <div class="row py-5 g-5 h-100">
+          <div class="col-md-6">
+            <div class="content">
+              <h1 class="mainTitle"><span>So</span> Yummy</h1>
+              <p>
+                Search over 3,000,000 recipes by category or ingredients Lorem
+                ipsum dolor sit amet consectetur adipisicing elit. Consectetur,
+                quidem!
+              </p>
+            </div>
+            <div class="searchBox">
+              <input
+                type="text"
+                placeholder="search"
+                id="searchHomeInput"
+                class="searchInput"
+              />
+              <a href="#" class="btnOne" id="btnSearch"> search </a>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="position-relative">
+              <img
+                src="./../images/salad.png"
+                class="img-fluid object-fit-cover homeImg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <main class="homePage" id="homePage">
       <div class="container">
-        <div class="row py-5 g-3" id="breakfast">
+        <h2 class="text-start z-3 pt-5 d-none" id="searchHomeResultTitle">search result</h2>
+
+        <div class="row py-5 g-3" id="searchHomeResult">
+        </div>
+
+        <div class="row pb-5 g-3" id="breakfast">
           <div class="text-start">
             <h2>Breakfast</h2>
           </div>
