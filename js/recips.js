@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
     tbody.innerHTML = cartona;
-  }
+  } 
 
   function displayRecipeData(recipe) {
     let cartona = ``;
