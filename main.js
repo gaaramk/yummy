@@ -14,12 +14,19 @@ let breakfast = document.getElementById("breakfast");
 let miscellaneous = document.getElementById("miscellaneous");
 let chicken = document.getElementById("chicken");
 let dessert = document.getElementById("dessert");
-let seeAll = document.getElementById("seeAll");
+const homeContent = document.getElementById("homeContents");
 let categoriesRow = document.getElementById("categoriesRow");
 let categoriesList = document.getElementById("categoriesList");
 let listPreparation = document.getElementById("listPreparation");
+let recipeHero = document.getElementById("recipeHero");
 let recipeImg = document.getElementById("recipeImg");
 let tableBody = document.getElementById("tableBody");
+let header = document.getElementById("header");
+const startPage = document.getElementById("startPage");
+const homePage = document.getElementById("homePage");
+const categoriesPage = document.getElementById("categoriesPage");
+const recipePage = document.getElementById("recipePage");
+const searchPage = document.getElementById("searchPage");
 
 // Fetch Wrapper Function
 async function fetchData(url) {
@@ -110,7 +117,9 @@ async function getCategoriesList() {
         <li>
           <a href="#" class="categoryItem ${
             index === 0 ? "active" : ""
-          }" data-category="${category.strCategory}">
+          }" data-category="${category.strCategory}"
+          
+            id="${category.strCategory}">
             ${category.strCategory}
           </a>
         </li>
@@ -124,6 +133,7 @@ async function getCategoriesList() {
         let category = e.target.dataset.category;
         setActiveCategory(e.target); // Set active class
         getCategoriesCard(category);
+        console.log(e.target);
       }
     });
 
@@ -159,7 +169,7 @@ async function getCategoriesCard(category) {
     for (let i = 0; i < categoriesCardArray.length; i++) {
       cartona += `
         <div class="col-md-3">
-          <a href="recipe.html?id=${categoriesCardArray[i].idMeal}">
+          <a href="pages/recipe.html?id=${categoriesCardArray[i].idMeal}">
             <div class="inner">
               <img src="${categoriesCardArray[i].strMealThumb}" alt="${categoriesCardArray[i].strMeal}" />
               <p class="p-1 rounded-3">${categoriesCardArray[i].strMeal}</p>
@@ -194,6 +204,7 @@ async function getRecipeDetails(id) {
       (_, i) => recipe[`strMeasure${i + 1}`]
     ).filter(Boolean);
 
+    displayRicipeHero(recipe);
     disPlayTableData();
     displayRecipeData(recipe);
   }
@@ -244,6 +255,30 @@ function displayRecipeData(recipe) {
   listPreparation.innerHTML = cartona;
   recipeImg.src = recipe.strMealThumb;
   recipeImg.alt = recipe.strMeal;
+}
+
+function displayRicipeHero(recipe) {
+  let cartona = ``;
+  cartona += `
+          <div class="container text-center">
+          <h1>${recipe.strMeal}</h1>
+          <p class="w-75 m-auto pb-5 pt-3">
+            ${recipe.strInstructions}
+          </p>
+
+          <div>
+            <button class="btnAddToRecipes">add to recipes</button>
+          </div>
+
+          <div class="time py-5 fs-4" id="time">
+            <span>
+              ${recipe.intPreparationTime} min
+              <i class="fa-solid fa-clock"></i>
+            </span>
+          </div>
+        </div>
+  `;
+  recipeHero.innerHTML = cartona;
 }
 
 // Initialize Functions
@@ -323,6 +358,7 @@ const searchHomeInput = document.getElementById("searchHomeInput");
 const searchHomeResult = document.getElementById("searchHomeResult");
 const searchHomeResultTitle = document.getElementById("searchHomeResultTitle");
 
+// search
 searchHomeInput.addEventListener("input", () => {
   const searchQuery = searchHomeInput.value;
   if (searchQuery !== "") {
@@ -353,5 +389,159 @@ searchHomeInput.addEventListener("input", () => {
     searchHomeResult.innerHTML = ``;
     searchHomeResultTitle.classList.add("d-none");
     searchHomeResultTitle.innerHTML = ``;
+  }
+});
+
+// navbar
+const navbar = document.getElementById("navbar");
+const navItems = document.querySelectorAll("#navItem");
+
+// Scroll Event
+let lastScrollPosition = 0;
+window.addEventListener("scroll", () => {
+  const currentScrollPosition = window.scrollY;
+  if (currentScrollPosition > lastScrollPosition) {
+    navbar.style.top = "-100px";
+  } else {
+    navbar.style.top = "0";
+  }
+  lastScrollPosition = currentScrollPosition;
+});
+
+// Click Event
+navItems.forEach((navItem) => {
+  navItem.addEventListener("click", () => {
+    navItems.forEach((item) => {
+      item.classList.remove("active");
+    });
+    navItem.classList.add("active");
+  });
+});
+
+navbar.addEventListener("click", (e) => {
+  switch (e.target.id) {
+    case "homeNav":
+      startPage.classList.add("d-none");
+      homePage.classList.remove("d-none");
+      categoriesPage.classList.add("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      break;
+    case "categoriesNav":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.remove("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      break;
+    case "addRecipesNav":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.add("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      break;
+
+    case "searchNav":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.add("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.remove("d-none");
+      break;
+
+    case "myRecipesNav":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.add("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      break;
+
+    case "myFavoritesNav":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.add("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      break;
+    default:
+      break;
+  }
+});
+
+homeContent.addEventListener("click", (e) => {
+  switch (e.target.id) {
+    case "btnSeeBreak":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.remove("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      getCategoriesCard("Breakfast");
+      setActiveCategory(document.getElementById("Breakfast"));
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+      navItems[1].classList.add("active");
+      break;
+
+    case "btnSeeMisc":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.remove("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      getCategoriesCard("miscellaneous");
+      setActiveCategory(document.getElementById("Miscellaneous"));
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+      navItems[1].classList.add("active");
+      break;
+
+    case "btnSeeChicken":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.remove("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      getCategoriesCard("chicken");
+      setActiveCategory(document.getElementById("Chicken"));
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+      navItems[1].classList.add("active");
+      break;
+
+    case "btnSeeDessert":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.remove("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      getCategoriesCard("dessert");
+      setActiveCategory(document.getElementById("Dessert"));
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+      navItems[1].classList.add("active");
+      break;
+
+    case "other":
+      startPage.classList.add("d-none");
+      homePage.classList.add("d-none");
+      categoriesPage.classList.remove("d-none");
+      recipePage.classList.add("d-none");
+      searchPage.classList.add("d-none");
+      getCategoriesCard("other");
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+      navItems[1].classList.add("active");
+      break;
+
+    default:
+      break;
   }
 });

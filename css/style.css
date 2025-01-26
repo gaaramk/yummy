@@ -62,6 +62,24 @@ h1 {
   background-color: var(--primary-color);
 }
 
+/* nav */
+nav {
+  width: 100%;
+  z-index: 10000;
+  position: fixed;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  background-color: var(--primary-color);
+}
 /* start page */
 .startPage {
   height: 100vh;
@@ -75,7 +93,7 @@ h1 {
 .startPage .content {
   color: var(--secondary-color);
 }
-.startPage .content .MainIcon {
+.MainIcon {
   width: 100px;
   height: 100px;
   background-color: var(--primary-color);
@@ -98,7 +116,8 @@ h1 {
 }
 .btnOne,
 .btnTwo,
-.btnOther {
+.btnOther,
+.btnSearch {
   padding: 1.1rem 2rem;
   line-height: 1.5rem;
   text-transform: capitalize;
@@ -108,10 +127,10 @@ h1 {
   border-top-right-radius: 44px;
   border-bottom-left-radius: 44px;
   transition: all 0.3s ease-in-out;
-  -webkit-transition: all;
-  -moz-transition: all;
-  -ms-transition: all;
-  -o-transition: all;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
 }
 .btnOne {
   background-color: var(--primary-color);
@@ -135,29 +154,12 @@ h1 {
 
 /* home Page */
 /* header */
-
+.homeHeader {
+  height: 100vh;
+}
 .homeHeader .headerImg {
-  bottom: 50px;
-  left: 500px;
-}
-@media screen and (max-width: 992px) {
-  .homeHeader{
-    height: 55vh;
-  }
-  .homeHeader .headerImg {
-    top: -250px;
-    left: 450px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .homeHeader{
-    height: 100vh;
-  }
-
-  .homeHeader .headerImg {
-    top: -250px;
-    left: 250px;
-  }
+  bottom: 0px;
+  left: 700px;
 }
 .mainTitle {
   font-size: 5rem;
@@ -177,7 +179,6 @@ h1 {
   margin-top: 0.5625rem;
   color: var(--secondary-color);
 }
-
 .homePage {
   background-color: var(--bg-form);
   color: var(--secondary-color);
@@ -247,8 +248,55 @@ h1 {
 .btnOther:hover {
   background-color: var(--primary-color);
 }
+.btnSearch:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
 
 /* recipe */
+
+.recipeHero{
+  background: url(./../images/recipe.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.recipeHero h1{
+  color: var(--primary-color);
+  font-size: 3rem;
+  line-height: 3rem;
+  letter-spacing: 0.0313rem;
+  margin-bottom: 1rem;
+}
+.recipeHero p{
+  color: var(--bg-form);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.0313rem;
+}
+
+.btnAddToRecipes{
+  padding: 0.75rem 5rem;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 2.75rem;
+  border-bottom-right-radius: 1.5rem;
+  border-top-right-radius: 2.75rem;
+  text-transform: capitalize;
+  border-color: var(--hover-BtnTwo);
+  font-size: 1rem;
+  letter-spacing: 0.0313rem;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.btnAddToRecipes:hover{
+  background-color: var(--hover-BtnTwo);
+  color: var(--secondary-color);
+}
 table {
   border-collapse: separate;
 }
@@ -327,4 +375,152 @@ table {
   line-height: 1.5rem;
   background-color: var(--hover-BtnOne);
   color: var(--secondary-color);
+}
+
+/* responsive */
+
+/* mobile */
+@media (max-width: 767px) {
+  .homeHeader {
+    height: 100vh;
+  }
+  .homeHeader .headerImg {
+    top: -100px;
+    left: 200px;
+  }
+  nav .container {
+    position: relative;
+  }
+  nav .logo {
+    align-self: self-start;
+    margin-bottom: 0;
+  }
+  nav .navigation {
+    width: 100%;
+    background: var(--bg-form);
+    position: absolute;
+    top: 70px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 1rem;
+    border-radius: 0.3125rem;
+    -webkit-border-radius: 0.3125rem;
+    -moz-border-radius: 0.3125rem;
+    -ms-border-radius: 0.3125rem;
+    -o-border-radius: 0.3125rem;
+    display: none;
+  }
+  nav .navList {
+    width: 100%;
+    flex-direction: column !important;
+    align-items: start !important;
+  }
+  nav .btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  nav .menuIcon {
+    display: flex !important;
+  }
+
+  #searchHomeResultTitle {
+    margin-top: 100px;
+  }
+
+  #categoriesList {
+    gap: 1rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+
+  .recipeHero h1{
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    letter-spacing: 0.0313rem;
+  }
+  .recipeHero p{
+    color: var(--bg-form);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4rem;
+    letter-spacing: 0.0313rem;
+  }
+
+  .recipePage table thead th {
+    padding: 0.5rem;
+  }
+  .recipePage table tbody td {
+    padding: 0.5rem;
+  }
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .homeHeader {
+    height: 55vh;
+  }
+  .homeHeader .headerImg {
+    top: -250px;
+    left: 450px;
+  }
+  nav .container {
+    position: relative;
+  }
+  nav .logo {
+    align-self: self-start;
+    margin-bottom: 0;
+  }
+  nav .navigation {
+    width: 100%;
+    background: var(--bg-form);
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 1rem;
+    border-radius: 0.3125rem;
+    -webkit-border-radius: 0.3125rem;
+    -moz-border-radius: 0.3125rem;
+    -ms-border-radius: 0.3125rem;
+    -o-border-radius: 0.3125rem;
+    display: none;
+  }
+  nav .navList {
+    width: 100%;
+    flex-direction: column !important;
+    align-items: start !important;
+  }
+  nav .btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  nav .menuIcon {
+    display: flex !important;
+  }
+
+  .recipePage table thead th {
+    padding: 0.75rem;
+  }
+  .recipePage table tbody td {
+    padding: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navigation {
+    display: flex !important;
+  }
 }
