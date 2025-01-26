@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="./../css/all.min.css" />
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./../css/bootstrap.min.css" />
+
+    <!-- custome css -->
+    <link rel="stylesheet" href="./../css/style.css" />
+
+    <!-- title -->
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- navigation -->
+    <header class="recipeHero" id="recipeHero">
+      <nav class="shadow-lg py-1" id="navbar">
+        <div
+          class="container d-flex align-items-center justify-content-between"
+        >
+          <!-- logo -->
+          <div
+            class="logo rounded-4 d-flex justify-content-center align-items-center mt-2"
+          >
+            <a href="#homePage">
+              <i class="fa-solid fa-utensils"></i>
+            </a>
+          </div>
+
+          <!-- navigation -->
+          <div
+            class="navigation align-items-center justify-content-between gap-5"
+            id="navigation"
+          >
+            <ul
+              id="navList"
+              class="navList d-flex justify-content-between align-items-end gap-5"
+            >
+              <li id="navItem">
+                <a href="#homePage" id="homeNav">Home</a>
+              </li>
+              <li id="navItem">
+                <a href="#categoriesPage" id="categoriesNav">Categories</a>
+              </li>
+              <li id="navItem">
+                <a href="#addRecipes" id="addRecipesNav">Add Recipes</a>
+              </li>
+              <li id="navItem">
+                <a href="#myRecipes" id="myRecipesNav">My Recipes</a>
+              </li>
+              <li id="navItem">
+                <a href="#myFavorites" id="myFavoritesNav">My Favorites</a>
+              </li>
+              <li id="navItem">
+                <a href="#searchPage" id="searchNav">
+                  <i class="fa-solid fa-magnifying-glass" id="searchNav"></i>
+                </a>
+              </li>
+            </ul>
+
+            <div class="btns mb-3">
+              <button class="btnOne p-2">
+                <a href="./pages/register.html"> register </a>
+              </button>
+              <button class="btnTwo p-2">
+                <a href="./pages/login.html"> sign in </a>
+              </button>
+            </div>
+          </div>
+
+          <!-- menu icon -->
+          <div
+            class="menuIcon d-none justify-content-center align-items-center mb-3 fs-1 pt-3"
+            id="menuIcon"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="container w-100 h-100 text-center d-flex flex-column justify-content-center align-items-center"
+      >
+        <h1>${recipe.strMeal}</h1>
+        <p class="w-75 pb-5 pt-3">${recipe.strInstructions}</p>
+        <div>
+          <button class="btnAddToRecipes">add to recipes</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Recipe Page -->
+    <main class="recipePage" id="recipePage">
+      <div class="container py-5">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="p-2">Ingredients</th>
+              <th>Measures</th>
+              <th>check</th>
+            </tr>
+          </thead>
+
+          <tbody id="tbody"></tbody>
+        </table>
+
+        <section class="my-5">
+          <div class="row mt-5" id="row">
+            <div class="col-md-6">
+              <h1 class="">Recipe Preparation</h1>
+              <ul class="listPreparation" id="listPreparation">
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, fuga.
+                </li>
+
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, fuga.
+                </li>
+
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, fuga.
+                </li>
+
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, fuga.
+                </li>
+
+                <li>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, fuga.
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-6">
+              <img
+                src="./../images/start-bg.jpg"
+                class="w-100"
+                id="recipeImg"
+                alt=""
+              />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- main js -->
+    <script src="./../js/recips.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="./../js/bootstrap.bundle.min.js"></script>
+
+    <!-- fontawesome js -->
+    <script src="./../js/all.min.js"></script>
+  </body>
+</html>

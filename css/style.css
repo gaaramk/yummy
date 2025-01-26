@@ -255,21 +255,22 @@ nav {
 
 /* recipe */
 
-.recipeHero{
+
+.recipeHero {
   background: url(./../images/recipe.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 80vh;
 }
-.recipeHero h1{
+.recipeHero h1 {
   color: var(--primary-color);
   font-size: 3rem;
   line-height: 3rem;
   letter-spacing: 0.0313rem;
   margin-bottom: 1rem;
 }
-.recipeHero p{
+.recipeHero p {
   color: var(--bg-form);
   font-size: 1.125rem;
   font-weight: 400;
@@ -277,7 +278,7 @@ nav {
   letter-spacing: 0.0313rem;
 }
 
-.btnAddToRecipes{
+.btnAddToRecipes {
   padding: 0.75rem 5rem;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 2.75rem;
@@ -293,7 +294,7 @@ nav {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
-.btnAddToRecipes:hover{
+.btnAddToRecipes:hover {
   background-color: var(--hover-BtnTwo);
   color: var(--secondary-color);
 }
@@ -439,19 +440,19 @@ table {
     overflow-y: hidden;
   }
 
-
-  .recipeHero h1{
+  .recipeHero h1 {
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.5rem;
     letter-spacing: 0.0313rem;
   }
-  .recipeHero p{
+  .recipeHero p {
     color: var(--bg-form);
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4rem;
     letter-spacing: 0.0313rem;
+    background: #000 !important;
   }
 
   .recipePage table thead th {

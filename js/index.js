@@ -5,9 +5,6 @@ let chickenArray = [];
 let dessertArray = [];
 let categoriesListArray = [];
 let categoriesCardArray = [];
-let recipePreparations = [];
-let ingredients = [];
-let measures = [];
 
 // DOM Elements
 let breakfast = document.getElementById("breakfast");
@@ -17,11 +14,6 @@ let dessert = document.getElementById("dessert");
 const homeContent = document.getElementById("homeContents");
 let categoriesRow = document.getElementById("categoriesRow");
 let categoriesList = document.getElementById("categoriesList");
-let listPreparation = document.getElementById("listPreparation");
-let recipeHero = document.getElementById("recipeHero");
-let recipeImg = document.getElementById("recipeImg");
-let tableBody = document.getElementById("tableBody");
-let header = document.getElementById("header");
 const startPage = document.getElementById("startPage");
 const homePage = document.getElementById("homePage");
 const categoriesPage = document.getElementById("categoriesPage");
@@ -48,7 +40,7 @@ function displayData(array, row) {
   for (let i = 0; i < Math.min(array.length, 4); i++) {
     cartona += `
       <div class="col-md-3">
-          <a href="recipe.html?id=${array[i].idMeal}">
+          <a href="pages/recipe.html?id=${array[i].idMeal}">
             <div class="inner">
                 <img src="${array[i].strMealThumb}" alt="${array[i].strMeal}" />
                 <p class="p-1 rounded-3">${array[i].strMeal}</p>
@@ -186,102 +178,6 @@ async function getCategoriesCard(category) {
 
 // Call Functions
 getCategoriesCard("beef");
-
-// Fetch and Display Recipe Details
-async function getRecipeDetails(id) {
-  let data = await fetchData(
-    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
-  );
-  if (data && data.meals) {
-    let recipe = data.meals[0];
-    recipePreparations = recipe.strInstructions.split(".");
-    ingredients = Array.from(
-      { length: 20 },
-      (_, i) => recipe[`strIngredient${i + 1}`]
-    ).filter(Boolean);
-    measures = Array.from(
-      { length: 20 },
-      (_, i) => recipe[`strMeasure${i + 1}`]
-    ).filter(Boolean);
-
-    displayRicipeHero(recipe);
-    disPlayTableData();
-    displayRecipeData(recipe);
-  }
-}
-
-// Display Table Data
-function disPlayTableData() {
-  let cartona = ``;
-  for (let i = 0; i < ingredients.length; i++) {
-    cartona += `
-      <tr id="row-${i}">
-        <td>
-          <img src="./../../images/start-bg.jpg" alt="" />
-          <span class="ingredient-text">${ingredients[i]}</span>
-        </td>
-        <td class="text-end pe-4">${measures[i]}</td>
-        <td class="text-end pe-4">
-          <input type="checkbox" name="recipe" class="recipe-check" />
-        </td>
-      </tr>
-    `;
-  }
-  tableBody.innerHTML = cartona;
-
-  // Add Event Listeners for Checkboxes
-  let checkboxes = document.querySelectorAll(".recipe-check");
-  checkboxes.forEach((checkbox, index) => {
-    checkbox.addEventListener("change", () => toggleStrikeThrough(index));
-  });
-}
-
-// Toggle Strike Through
-function toggleStrikeThrough(index) {
-  let row = document.getElementById(`row-${index}`);
-  let checkbox = row.querySelector(".recipe-check");
-  row.style.textDecoration = checkbox.checked ? "line-through" : "none";
-  row.style.color = checkbox.checked ? "gray" : "white";
-}
-
-// Display Recipe Data
-function displayRecipeData(recipe) {
-  let cartona = ``;
-  recipePreparations.forEach((preparation) => {
-    if (preparation) {
-      cartona += `<li>${preparation}</li>`;
-    }
-  });
-  listPreparation.innerHTML = cartona;
-  recipeImg.src = recipe.strMealThumb;
-  recipeImg.alt = recipe.strMeal;
-}
-
-function displayRicipeHero(recipe) {
-  let cartona = ``;
-  cartona += `
-          <div class="container text-center">
-          <h1>${recipe.strMeal}</h1>
-          <p class="w-75 m-auto pb-5 pt-3">
-            ${recipe.strInstructions}
-          </p>
-
-          <div>
-            <button class="btnAddToRecipes">add to recipes</button>
-          </div>
-
-          <div class="time py-5 fs-4" id="time">
-            <span>
-              ${recipe.intPreparationTime} min
-              <i class="fa-solid fa-clock"></i>
-            </span>
-          </div>
-        </div>
-  `;
-  recipeHero.innerHTML = cartona;
-}
-
-// Initialize Functions
 getBreakfast();
 getMiscellaneous();
 getChicken();
@@ -292,7 +188,6 @@ getCategoriesList();
 const urlParams = new URLSearchParams(window.location.search);
 const recipeId = urlParams.get("id");
 if (recipeId) {
-  getRecipeDetails(recipeId);
   getCategoriesCard(recipeId);
 }
 
