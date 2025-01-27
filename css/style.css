@@ -73,6 +73,9 @@ nav {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
+nav li {
+  cursor: pointer;
+}
 .logo {
   width: 50px;
   height: 50px;
@@ -254,7 +257,6 @@ nav {
 }
 
 /* recipe */
-
 .recipeHero {
   background: url(./../images/recipe.jpg);
   background-size: cover;
@@ -276,7 +278,6 @@ nav {
   line-height: 1.5rem;
   letter-spacing: 0.0313rem;
 }
-
 .btnAddToRecipes {
   padding: 0.75rem 5rem;
   border-top-left-radius: 1.5rem;
@@ -344,6 +345,7 @@ table {
 .searchBox {
   position: relative;
 }
+
 .searchInput {
   width: 100%;
   background-color: var(--hover-BtnOne);
@@ -358,15 +360,34 @@ table {
   position: relative;
 }
 
-#btnSearch {
+.btnSearch {
   /* width: 100%; */
   position: absolute;
   right: 0;
 }
 
-.searchSelect {
+.searchPage {
+  position: relative;
+}
+
+.searchPage.active {
+  display: block;
+}
+
+.searchPage .searchBox {
   width: 50%;
-  border: 1px solid var(--secondary-color);
+  margin-bottom: 20px;
+  margin-top: 150px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#searchResultPage {
+  width: 100%;
+}
+
+.searchPage .searchType {
+  width: 25%;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 2.75rem;
   border-bottom-right-radius: 1.5rem;
@@ -377,8 +398,103 @@ table {
   color: var(--secondary-color);
 }
 
-/* responsive */
+/* registerPage */
+.registerPage {
+  height: 100vh;
+  position: relative;
+}
 
+.registerPage .wave {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  /* background-color: red !important; */
+}
+
+.registerPage .registerForm {
+  /* width: 50%; */
+  margin: 0 auto;
+  padding: 10px;
+  z-index: 1;
+}
+
+.registerPage .rightSide {
+  background-color: var(--hover-BtnOne);
+}
+
+.registerPage .registerForm input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.registerPage .registerForm button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.registerPage .registerForm button:hover {
+  background-color: var(--secondary-color);
+  color: var(--hover-BtnOne);
+}
+
+.loginPage {
+  height: 100vh;
+  position: relative;
+}
+
+.loginPage .leftSide img {
+  z-index: 100;
+  position: relative;
+}
+.loginPage .wave {
+  position: absolute;
+  bottom: 230px;
+  left: 0;
+  /* z-index: -1; */
+}
+
+.loginPage .registerForm {
+  /* width: 50%; */
+  margin: 0 auto;
+  padding: 10px;
+  z-index: 1;
+}
+
+.loginPage .rightSide {
+  background-color: var(--hover-BtnOne);
+}
+
+.loginPage .registerForm input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.loginPage .registerForm label {
+  color: var(--bg-form) !;
+}
+
+.loginPage .registerForm button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.loginPage .registerForm button:hover {
+  background-color: var(--secondary-color);
+  color: var(--hover-BtnOne);
+}
+
+.errorInput {
+  color: red;
+}
+
+/* responsive */
 /* mobile */
 @media (max-width: 767px) {
   .homeHeader {
@@ -399,7 +515,7 @@ table {
     width: 100%;
     background: var(--bg-form);
     position: absolute;
-    top: 70px;
+    top: 116px;
     left: 0;
     display: flex;
     flex-direction: column;
@@ -460,6 +576,13 @@ table {
   .recipePage table tbody td {
     padding: 0.5rem;
   }
+
+  .registerPage .wave {
+    display: none;
+  }
+  .loginPage .wave {
+    display: none;
+  }
 }
 
 /* tablet */
@@ -478,12 +601,12 @@ table {
     align-self: self-start;
     margin-bottom: 0;
   }
-  nav .navigation {
+  .navigation {
     width: 100%;
     background: var(--bg-form);
     position: absolute;
-    top: 80px;
-    left: 20px;
+    top: 120px;
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -517,10 +640,18 @@ table {
   .recipePage table tbody td {
     padding: 0.75rem;
   }
+
+  .registerPage .wave {
+    display: none;
+  }
+  .loginPage .wave {
+    display: none;
+  }
 }
 
-@media screen and (min-width: 992px) {
-  .navigation {
+/* desktop */
+@media (min-width: 992px) {
+  .navigation{
     display: flex !important;
   }
 }

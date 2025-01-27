@@ -14,11 +14,26 @@ let dessert = document.getElementById("dessert");
 const homeContent = document.getElementById("homeContents");
 let categoriesRow = document.getElementById("categoriesRow");
 let categoriesList = document.getElementById("categoriesList");
-const startPage = document.getElementById("startPage");
 const homePage = document.getElementById("homePage");
 const categoriesPage = document.getElementById("categoriesPage");
 const recipePage = document.getElementById("recipePage");
 const searchPage = document.getElementById("searchPage");
+const navbar = document.getElementById("navbar");
+const navItems = document.querySelectorAll("#navItem");
+const menuIcon = document.getElementById("menuIcon");
+const navigation = document.getElementById("navigation");
+const searchHomeInput = document.getElementById("searchHomeInput");
+const searchHomeResult = document.getElementById("searchHomeResult");
+const searchHomeResultTitle = document.getElementById("searchHomeResultTitle");
+const searchInput = document.getElementById("searchInput");
+const searchSelect = document.getElementById("searchType");
+const searchButton = document.getElementById("btnSearchPage");
+const searchResult = document.getElementById("searchResultPage");
+const links = document.querySelectorAll(".nav-link");
+const activeLink = document.querySelector(".active");
+const homeNav = document.getElementById("homeNav");
+const searchNav = document.getElementById("searchNav");
+const categoryNav = document.getElementById("categoriesNav");
 
 // Fetch Wrapper Function
 async function fetchData(url) {
@@ -40,7 +55,7 @@ function displayData(array, row) {
   for (let i = 0; i < Math.min(array.length, 4); i++) {
     cartona += `
       <div class="col-md-3">
-          <a href="pages/recipe.html?id=${array[i].idMeal}">
+          <a href="recipe.html?id=${array[i].idMeal}">
             <div class="inner">
                 <img src="${array[i].strMealThumb}" alt="${array[i].strMeal}" />
                 <p class="p-1 rounded-3">${array[i].strMeal}</p>
@@ -161,7 +176,7 @@ async function getCategoriesCard(category) {
     for (let i = 0; i < categoriesCardArray.length; i++) {
       cartona += `
         <div class="col-md-3">
-          <a href="pages/recipe.html?id=${categoriesCardArray[i].idMeal}">
+          <a href="recipe.html?id=${categoriesCardArray[i].idMeal}">
             <div class="inner">
               <img src="${categoriesCardArray[i].strMealThumb}" alt="${categoriesCardArray[i].strMeal}" />
               <p class="p-1 rounded-3">${categoriesCardArray[i].strMeal}</p>
@@ -176,82 +191,12 @@ async function getCategoriesCard(category) {
   }
 }
 
-// Call Functions
-getCategoriesCard("beef");
-getBreakfast();
-getMiscellaneous();
-getChicken();
-getDessert();
-getCategoriesList();
-
 // Get Recipe Details Dynamically
 const urlParams = new URLSearchParams(window.location.search);
 const recipeId = urlParams.get("id");
 if (recipeId) {
   getCategoriesCard(recipeId);
 }
-
-// search Page
-const searchInput = document.getElementById("searchInput");
-const searchSelect = document.getElementById("searchSelect");
-const searchButton = document.getElementById("btnSearch");
-const searchResult = document.getElementById("searchResult");
-
-searchButton.addEventListener("click", () => {
-  const searchQuery = searchInput.value;
-  const searchType = searchSelect.value;
-
-  if (searchType === "name") {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const meals = data.meals;
-        const cartona = meals
-          .map(
-            (meal) => `
-    <div class="col-md-3">
-      <a href="recipe.html?id=${meal.idMeal}">
-        <div class="inner">
-          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
-          <p class="p-1 rounded-3">${meal.strMeal}</p>
-        </div>
-      </a>
-    </div>
-  `
-          )
-          .join("");
-        searchResult.innerHTML = cartona;
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  } else if (searchType === "letter") {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchQuery}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const meals = data.meals;
-        const cartona = meals
-          .map(
-            (meal) => `
-    <div class="col-md-3">
-      <a href="recipe.html?id=${meal.idMeal}">
-        <div class="inner">
-          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
-          <p class="p-1 rounded-3">${meal.strMeal}</p>
-        </div>
-      </a>
-    </div>
-  `
-          )
-          .join("");
-        searchResult.innerHTML = cartona;
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }
-});
-
-// search home page
-const searchHomeInput = document.getElementById("searchHomeInput");
-const searchHomeResult = document.getElementById("searchHomeResult");
-const searchHomeResultTitle = document.getElementById("searchHomeResultTitle");
 
 // search
 searchHomeInput.addEventListener("input", () => {
@@ -287,10 +232,6 @@ searchHomeInput.addEventListener("input", () => {
   }
 });
 
-// navbar
-const navbar = document.getElementById("navbar");
-const navItems = document.querySelectorAll("#navItem");
-
 // Scroll Event
 let lastScrollPosition = 0;
 window.addEventListener("scroll", () => {
@@ -303,7 +244,7 @@ window.addEventListener("scroll", () => {
   lastScrollPosition = currentScrollPosition;
 });
 
-// Click Event
+// active nav
 navItems.forEach((navItem) => {
   navItem.addEventListener("click", () => {
     navItems.forEach((item) => {
@@ -313,130 +254,104 @@ navItems.forEach((navItem) => {
   });
 });
 
-navbar.addEventListener("click", (e) => {
-  switch (e.target.id) {
-    case "homeNav":
-      startPage.classList.add("d-none");
-      homePage.classList.remove("d-none");
-      categoriesPage.classList.add("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      break;
-    case "categoriesNav":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.remove("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      break;
-    case "addRecipesNav":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.add("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      break;
+// search
+searchButton.addEventListener("click", () => {
+  const searchQuery = searchInput.value.trim();
+  const searchType = searchSelect.value;
 
-    case "searchNav":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.add("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.remove("d-none");
-      break;
+  if (searchQuery === "") {
+    searchResult.innerHTML = `
+      <div class="col-md-12">
+        <div class="inner">
+          <img src="images/404.png" alt="Empty" />       
+        </div>
+      </div>
+    `;
+    return;
+  } // تأكد من وجود إدخال
 
-    case "myRecipesNav":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.add("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      break;
+  fetch(
+    `https://www.themealdb.com/api/json/v1/1/search.php?${
+      searchType === "name" ? "s" : "f"
+    }=${searchQuery}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const meals = data.meals || [];
+      const cartona = meals
+        .map(
+          (meal) => `
+    <div class="col-md-3">
+      <a href="recipe.html?id=${meal.idMeal}">
+        <div class="inner">
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+          <p class="p-1 rounded-3">${meal.strMeal}</p>
+        </div>
+      </a>
+    </div>
+  `
+        )
+        .join("");
 
-    case "myFavoritesNav":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.add("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      break;
-    default:
-      break;
-  }
+      searchResult.innerHTML = cartona;
+      searchPage.classList.add("active"); // عرض الصفحة مع تفعيل النتائج
+    })
+    .catch((error) => console.error("Error fetching data:", error));
 });
 
-homeContent.addEventListener("click", (e) => {
-  switch (e.target.id) {
-    case "btnSeeBreak":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.remove("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      getCategoriesCard("Breakfast");
-      setActiveCategory(document.getElementById("Breakfast"));
-      navItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-      navItems[1].classList.add("active");
-      break;
-
-    case "btnSeeMisc":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.remove("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      getCategoriesCard("miscellaneous");
-      setActiveCategory(document.getElementById("Miscellaneous"));
-      navItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-      navItems[1].classList.add("active");
-      break;
-
-    case "btnSeeChicken":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.remove("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      getCategoriesCard("chicken");
-      setActiveCategory(document.getElementById("Chicken"));
-      navItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-      navItems[1].classList.add("active");
-      break;
-
-    case "btnSeeDessert":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.remove("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      getCategoriesCard("dessert");
-      setActiveCategory(document.getElementById("Dessert"));
-      navItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-      navItems[1].classList.add("active");
-      break;
-
-    case "other":
-      startPage.classList.add("d-none");
-      homePage.classList.add("d-none");
-      categoriesPage.classList.remove("d-none");
-      recipePage.classList.add("d-none");
-      searchPage.classList.add("d-none");
-      getCategoriesCard("other");
-      navItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-      navItems[1].classList.add("active");
-      break;
-
-    default:
-      break;
-  }
+// categories
+categoryNav.addEventListener("click", () => {
+  homePage.classList.add("d-none");
+  categoriesPage.classList.remove("d-none");
+  searchPage.classList.add("d-none");
 });
+
+// home
+homeNav.addEventListener("click", () => {
+  homePage.classList.remove("d-none");
+  categoriesPage.classList.add("d-none");
+  searchPage.classList.add("d-none");
+});
+
+// search
+searchNav.addEventListener("click", () => {
+  homePage.classList.add("d-none");
+  categoriesPage.classList.add("d-none");
+  searchPage.classList.remove("d-none");
+});
+
+// add active class to the active link
+
+links.forEach((link) => {
+  link.addEventListener("click", () => {
+    links.forEach((otherLink) => {
+      otherLink.classList.remove("active");
+    });
+    link.classList.add("active");
+  });
+});
+
+// menu icon
+menuIcon.addEventListener("click", () => {
+  navigation.classList.toggle("d-flex");
+});
+
+// see all
+function seeAll(category, activeCategory) {
+  categoriesPage.classList.remove("d-none");
+  homePage.classList.add("d-none");
+  searchPage.classList.add("d-none");
+  getCategoriesCard(category);
+  setActiveCategory(activeCategory);
+
+  categoriesNav.classList.add("active");
+  homeNav.classList.remove("active");
+}
+
+// Call Functions
+getCategoriesCard("beef");
+getBreakfast();
+getMiscellaneous();
+getChicken();
+getDessert();
+getCategoriesList();

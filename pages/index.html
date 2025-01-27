@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+    <!-- custome css -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- title -->
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Start Page (Main page) -->
+    <main class="startPage" id="startPage">
+      <div
+        class="container h-100 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="content d-flex flex-column justify-content-center align-items-center text-center"
+        >
+          <div
+            class="MainIcon rounded-4 d-flex justify-content-center align-items-center"
+          >
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+
+          <div class="text">
+            <h1>Welcome to the app!</h1>
+
+            <p class="w-50 mx-auto">
+              This app offers more than just a collection of recipes - it is
+              designed to be your very own digital cookbook. You can easily save
+              and retrieve your own recipes at any time.
+            </p>
+          </div>
+
+          <div class="btns">
+            <button class="btnOne" id="startReg">register</button>
+            <button class="btnTwo" id="startLogin">sign in</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- register page -->
+    <div class="registerPage bg-white d-none" id="registerPage">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- left side image -->
+          <div class="col-lg-6">
+            <div class="leftSide">
+              <img src="../images/form.svg" alt="register svg" />
+            </div>
+          </div>
+
+          <!-- right side form -->
+          <div class="col-lg-6 registerForm">
+            <div class="rightSide p-3 rounded-5 shadow-lg">
+              <div class="content">
+                <h1 class="mainTitle">Register</h1>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Fugit, quisquam. Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Fugit, quisquam.
+                </p>
+
+                <div class="inputs">
+                  <!-- user name -->
+                  <div class="mb-3">
+                    <label for="userName" class="form-label"> User Name </label>
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="userName"
+                      placeholder="Enter your name"
+                    />
+
+                    <p class="errorInput d-none" id="userNameError">
+                      must be at least 3 characters long and contain only
+                      letters
+                    </p>
+                  </div>
+
+                  <!-- email -->
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      placeholder="name@example.com"
+                    />
+
+                    <p class="errorInput d-none" id="emailError">
+                      must be a valid email
+                    </p>
+                  </div>
+
+                  <!-- password -->
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      placeholder="Enter your password"
+                    />
+
+                    <p class="errorInput d-none" id="passwordError">
+                      must be at least 8 characters long
+                    </p>
+                  </div>
+
+                  <!-- confirm password -->
+                  <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">
+                      Confirm Password
+                    </label>
+
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmPassword"
+                      placeholder="Re-enter your password"
+                    />
+
+                    <p class="errorInput d-none" id="confirmPasswordError">
+                      not matched with password
+                    </p>
+                  </div>
+
+                  <div class="py-3">
+                    <button class="btnOne w-100" id="registerBtn">
+                      register
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="border-0" id="haveAccount">
+              already have an account? <span class="text-info">login</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- login page -->
+    <div class="loginPage bg-white d-none" id="loginPage">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <!-- left side image -->
+          <div class="col-lg-6">
+            <div class="leftSide">
+              <img src="../images/form.svg" alt="register svg" />
+            </div>
+          </div>
+
+          <!-- right side form -->
+          <div class="col-lg-6 registerForm">
+            <div class="rightSide p-3 rounded-5 shadow-lg">
+              <div class="content">
+                <h1 class="mainTitle">sign in</h1>
+
+                <div class="inputs">
+                  <!-- email -->
+                  <div class="mb-3">
+                    <label for="loginEmail" class="form-label"
+                      >Email address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="loginEmail"
+                      placeholder="name@example.com"
+                    />
+
+                    <p class="errorInput d-none" id="loginEmailError">
+                      must be a valid email
+                    </p>
+                  </div>
+
+                  <!-- password -->
+                  <div class="mb-3">
+                    <label for="loginPassword" class="form-label"
+                      >Password</label
+                    >
+
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="loginPassword"
+                      placeholder="Enter your password"
+                    />
+
+                    <p class="errorInput d-none" id="loginPasswordError">
+                      must be at least 8 characters long
+                    </p>
+                  </div>
+
+                  <div class="py-3">
+                    <button class="btnOne w-100" id="loginBtn">sign in</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="border-0" id="dontHaveAccount">
+              don't have an account? <span class="text-info">register</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- main js -->
+    <script src="../js/register.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <!-- fontawesome js -->
+    <script src="../js/all.min.js"></script>
+  </body>
+</html>
