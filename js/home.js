@@ -39,6 +39,8 @@ const categoryNav = document.getElementById("categoriesNav");
 async function fetchData(url) {
   try {
     let response = await fetch(url);
+    loading.classList.remove("d-none");
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -46,6 +48,8 @@ async function fetchData(url) {
   } catch (error) {
     console.error("Failed to fetch data:", error);
     return null;
+  } finally {
+    loading.classList.add("d-none");
   }
 }
 
@@ -72,6 +76,7 @@ async function getBreakfast() {
   let data = await fetchData(
     "https://www.themealdb.com/api/json/v1/1/filter.php?c=breakfast"
   );
+
   if (data) {
     breakfastArray = data.meals;
     displayData(breakfastArray, breakfast);
@@ -170,6 +175,7 @@ async function getCategoriesCard(category) {
   let data = await fetchData(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
   );
+
   if (data) {
     categoriesCardArray = data.meals;
     let cartona = ``;
@@ -355,3 +361,5 @@ getMiscellaneous();
 getChicken();
 getDessert();
 getCategoriesList();
+
+const loading = document.getElementById("loading");
